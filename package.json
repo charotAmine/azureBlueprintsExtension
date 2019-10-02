@@ -1,8 +1,14 @@
 {
 	"name": "azure-blueprints-generator",
+	"publisher": "aminecharot",
 	"displayName": "Azure Blueprints Generator",
 	"description": "Generates the directory of Azure Blueprints",
 	"version": "0.0.1",
+	"repository": {
+        "type": "git",
+        "url": "https://github.com/charotAmine/azureBlueprintsExtension"
+	},
+	"icon": "assets/logo.png",
 	"engines": {
 		"vscode": "^1.38.0"
 	},

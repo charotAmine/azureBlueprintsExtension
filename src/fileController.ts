@@ -11,12 +11,12 @@ const appendFile = denodeify(fs.appendFileSync);
 
 export class FileController {
 
-  private extensionPath:string;
+  private extensionPath: string;
 
   constructor(extensionPath: string) {
     this.extensionPath = extensionPath;
   }
-  
+
   public async createBlueprintsWorkspace(blueprintName: string) {
     let workspace = vscode.workspace.workspaceFolders;
     if (workspace) {
@@ -31,7 +31,7 @@ export class FileController {
     }
   }
 
-  public async createArtifactFile(blueprintName: string, kind: string,artifactName: string) {
+  public async createArtifactFile(blueprintName: string, kind: string, artifactName: string) {
     let workspace = vscode.workspace.workspaceFolders;
     if (workspace) {
       let workspacePath = workspace[0];

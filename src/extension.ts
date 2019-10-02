@@ -47,7 +47,6 @@ export function activate(context: vscode.ExtensionContext) {
 						else {
 							blueprintWorkspace.createArtifactFile(blueprintRootName, artifact, artifactFileName);
 							vscode.window.showInformationMessage("Azure Blueprints Artifact has been created");
-
 						}
 					}
 				}
