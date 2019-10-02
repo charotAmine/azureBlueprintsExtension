@@ -11,41 +11,54 @@ const appendFile = denodeify(fs.appendFileSync);
 
 export class FileController {
 
-    public async createBlueprintsWorkspace(blueprintName : string){
-        let workspace = vscode.workspace.workspaceFolders
-        if(workspace)
-        {
-            let workspacePath = workspace[0]
-            let dirName = workspacePath.uri.fsPath + "\\" + blueprintName
-            let blueprintJson = dirName + "\\Blueprint.json"
-            let assignJson = dirName + "\\Assign.json"
-            let artifactsDirectory = dirName + "\\Artifacts"
-            
-            this.createFiles([blueprintJson,assignJson])
-            this.createDirectory(artifactsDirectory)
-        }
-      }
+  private extensionPath:string;
 
-  private async createFiles(newFileNames: string[]): Promise<string[]> {
-    const fileCreationPromises: Array<
-      Promise<string>
-    > = newFileNames.map(fileName => this.createFile(fileName));
-    return Promise.all(fileCreationPromises);
+  constructor(extensionPath: string) {
+    this.extensionPath = extensionPath;
+  }
+  
+  public async createBlueprintsWorkspace(blueprintName: string) {
+    let workspace = vscode.workspace.workspaceFolders;
+    if (workspace) {
+      let workspacePath = workspace[0];
+      let dirName = workspacePath.uri.fsPath + "\\" + blueprintName;
+      let blueprintJson = dirName + "\\Blueprint.json";
+      let assignJson = dirName + "\\Assign.json";
+      let artifactsDirectory = dirName + "\\Artifacts";
+      this.createFile(blueprintJson, "blueprint", this.extensionPath);
+      this.createFile(assignJson, "assign", this.extensionPath);
+      this.createDirectory(artifactsDirectory);
+    }
+  }
+
+  public async createArtifactFile(blueprintName: string, kind: string,artifactName: string) {
+    let workspace = vscode.workspace.workspaceFolders;
+    if (workspace) {
+      let workspacePath = workspace[0];
+      let dirName = workspacePath.uri.fsPath + "\\" + blueprintName;
+      let artifactsDirectory = dirName + "\\Artifacts" + "\\" + artifactName + ".json";
+      this.createFile(artifactsDirectory, kind, this.extensionPath);
+    }
   }
 
   private async createDirectory(dirName: string): Promise<string> {
-    await mkdir(dirName);    
+    await mkdir(dirName);
     return dirName;
   }
 
-  private async createFile(newFileName: string): Promise<string> {
+  public async createFile(newFileName: string, kind: string, extensionPath: string): Promise<string> {
 
     const dirName: string = path.dirname(newFileName);
     const fileExists: boolean = await this.fileExists(newFileName);
 
     if (!fileExists) {
       await this.createDirectory(dirName);
-      await appendFile(newFileName,"");
+      fs.readFile(`${extensionPath}/assets/${kind}.json`, function (err, data) {
+        if (err) {
+          return console.error(err);
+        }
+        appendFile(newFileName, data.toString());
+      });
     }
 
     return newFileName;

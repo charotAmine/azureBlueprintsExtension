@@ -1,0 +1,14 @@
+{
+    "properties": {
+        "policyDefinitionId": "PolicyDefinitionId",
+        "parameters": {},
+        "resourceGroup": "defaultRG",
+        "dependsOn": [],
+        "displayName": "A default policy defintion",
+        "metadata": {
+            "COMMENT": "Default"
+        }
+    },
+    "kind": "policyAssignment",
+    "type": "Microsoft.Blueprint/blueprints/artifacts"
+}

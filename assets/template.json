@@ -1,0 +1,18 @@
+{
+    "kind": "template",
+    "properties": {
+      "dependsOn": [""],
+      "template": {
+
+      },
+      "resourceGroup": "defaultRG",
+      "displayName": "Default ARM Template",
+      "parameters": {
+        "defaultParamater": {
+          "value": "[parameters('defaultParamater')]"
+        }
+      }
+    },
+    "type": "Microsoft.Blueprint/blueprints/artifacts",
+    "name": "defaultName"
+}

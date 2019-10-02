@@ -10,14 +10,19 @@
 		"Other"
 	],
 	"activationEvents": [
-		"onCommand:extension.generateBlueprintsWorkspace"
+		"onCommand:extension.generateBlueprintsWorkspace",
+		"onCommand:extension.createBlueprintArtifact"
 	],
 	"main": "./out/extension.js",
 	"contributes": {
 		"commands": [
 			{
 				"command": "extension.generateBlueprintsWorkspace",
-				"title": "Generate the blueprint workspace"
+				"title": "Azure Blueprints: Generate a blueprint workspace"
+			},
+			{
+				"command": "extension.createBlueprintArtifact",
+				"title": "Azure Blueprints: Generate a blueprint Artifact"
 			}
 		]
 	},

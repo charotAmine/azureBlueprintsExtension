@@ -1,0 +1,10 @@
+{
+    "kind": "roleAssignment",
+    "properties": {
+        "roleDefinitionId": "Id of role",
+        "principalIds": ["myPrincipaleId"],
+        "displayName": "Role name"
+    },
+    "type": "Microsoft.Blueprint/blueprints/artifacts",
+    "name": "defaultRbacAssignment"
+}

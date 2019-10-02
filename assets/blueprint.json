@@ -1,0 +1,18 @@
+{
+    "properties": {
+        "description": "This is a default template, please modify it.",
+        "targetScope": "",
+        "parameters": { 
+            "defaultParameter": {
+                "type": "string",
+                "defaultValue": "defaultValue"
+            }
+        },
+        "resourceGroups": {
+            "defaultRG": {
+                "description": "This is a default RG, please create yours"
+            }
+        }
+    },
+    "type": "Microsoft.Blueprint/blueprints" 
+}

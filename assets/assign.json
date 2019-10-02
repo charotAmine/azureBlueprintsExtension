@@ -1,0 +1,23 @@
+{
+    "identity": {
+        "type": ""
+    },
+    "location": "",
+    "properties": {
+        "blueprintId": "",
+        "resourceGroups": {
+            "defaultRg": {
+                "name": "defaultRg",
+                "location": ""
+            }
+        },
+        "locks": {
+            "mode": ""
+        },
+        "parameters": {
+            "defaultParameter": {
+                "value": "default"
+            }
+        }
+    }
+}
