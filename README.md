@@ -1,10 +1,10 @@
 # Azure Blueprints Code Generator
 
-The Azure Blueprint Code Generator is an extention which creates an Azure Blueprint workspace with the necessary JSON files to deploy a Blueprints using code. It also creates artifactes of type template, Rbac assignment and Policy Assignment.
+The Azure Blueprint Code Generator is an extention which creates an Azure Blueprint workspace with the necessary JSON files to deploy a Blueprint using code. It also creates artifacts of type Template, Rbac assignment and Policy Assignment.
 
 ## Features
 
-First thing that this extention can do is to create a blueprint workspace : 
+First thing that this extention can do is creating a blueprint workspace : 
 
 * Use command ** Azure Blueprints: Generate a blueprint workspace **  
 ![Generator](images/generator.png)
