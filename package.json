@@ -17,7 +17,10 @@
 	],
 	"activationEvents": [
 		"onCommand:extension.generateBlueprintsWorkspace",
-		"onCommand:extension.createBlueprintArtifact"
+		"onCommand:extension.createBlueprintArtifact",
+		"onCommand:extension.importBlueprint",
+		"onCommand:extension.publishBlueprint",
+		"onCommand:extension.assignBlueprint"
 	],
 	"main": "./out/extension.js",
 	"contributes": {
@@ -29,6 +32,18 @@
 			{
 				"command": "extension.createBlueprintArtifact",
 				"title": "Azure Blueprints: Generate a blueprint Artifact"
+			},
+			{
+				"command": "extension.importBlueprint",
+				"title": "Azure Blueprints: Import Blueprint"
+			},
+			{
+				"command": "extension.publishBlueprint",
+				"title": "Azure Blueprints: Publish Blueprint"
+			},
+			{
+				"command": "extension.assignBlueprint",
+				"title": "Azure Blueprints: Assign Blueprint"
 			}
 		]
 	},
