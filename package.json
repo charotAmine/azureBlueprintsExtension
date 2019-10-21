@@ -3,7 +3,7 @@
 	"publisher": "aminecharot",
 	"displayName": "Azure Blueprints Generator",
 	"description": "Generates the directory of Azure Blueprints",
-	"version": "0.0.1",
+	"version": "0.0.3",
 	"repository": {
 		"type": "git",
 		"url": "https://github.com/charotAmine/azureBlueprintsExtension"
