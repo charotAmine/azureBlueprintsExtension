@@ -8,7 +8,6 @@ import { denodeify } from 'q';
 const mkdir = denodeify(mkdirp);
 const appendFile = denodeify(fs.appendFileSync);
 
-
 export class FileController {
 
   private extensionPath: string;
@@ -21,10 +20,10 @@ export class FileController {
     let workspace = vscode.workspace.workspaceFolders;
     if (workspace) {
       let workspacePath = workspace[0];
-      let dirName = workspacePath.uri.fsPath + "\\" + blueprintName;
-      let blueprintJson = dirName + "\\Blueprint.json";
-      let assignJson = dirName + "\\Assign.json";
-      let artifactsDirectory = dirName + "\\Artifacts";
+      let dirName = workspacePath.uri.fsPath + "/" + blueprintName;
+      let blueprintJson = dirName + "/Blueprint.json";
+      let assignJson = dirName + "/Assign.json";
+      let artifactsDirectory = dirName + "/Artifacts";
       this.createFile(blueprintJson, "blueprint", this.extensionPath);
       this.createFile(assignJson, "assign", this.extensionPath);
       this.createDirectory(artifactsDirectory);
@@ -35,8 +34,8 @@ export class FileController {
     let workspace = vscode.workspace.workspaceFolders;
     if (workspace) {
       let workspacePath = workspace[0];
-      let dirName = workspacePath.uri.fsPath + "\\" + blueprintName;
-      let artifactsDirectory = dirName + "\\Artifacts" + "\\" + artifactName + ".json";
+      let dirName = workspacePath.uri.fsPath + "/" + blueprintName;
+      let artifactsDirectory = dirName + "/Artifacts" + "/" + artifactName + ".json";
       this.createFile(artifactsDirectory, kind, this.extensionPath);
     }
   }

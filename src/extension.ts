@@ -157,8 +157,7 @@ export function activate(context: vscode.ExtensionContext) {
 	context.subscriptions.push(createTemplateArtifact);
 	context.subscriptions.push(importBlueprint);
 	context.subscriptions.push(publishBlueprint);
-
-
+	context.subscriptions.push(assignBlueprint);
 }
 
 export function deactivate() { }
