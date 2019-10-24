@@ -3,7 +3,7 @@
 	"publisher": "aminecharot",
 	"displayName": "Azure Blueprints Generator",
 	"description": "Generates the directory of Azure Blueprints",
-	"version": "0.0.3",
+	"version": "0.1.0",
 	"repository": {
 		"type": "git",
 		"url": "https://github.com/charotAmine/azureBlueprintsExtension"
@@ -20,7 +20,8 @@
 		"onCommand:extension.createBlueprintArtifact",
 		"onCommand:extension.importBlueprint",
 		"onCommand:extension.publishBlueprint",
-		"onCommand:extension.assignBlueprint"
+		"onCommand:extension.assignBlueprint",
+		"onCommand:extension.blueprintPreview"
 	],
 	"main": "./out/extension.js",
 	"contributes": {
@@ -44,6 +45,10 @@
 			{
 				"command": "extension.assignBlueprint",
 				"title": "Azure Blueprints: Assign Blueprint"
+			},
+			{
+				"command": "extension.blueprintPreview",
+				"title": "Azure Blueprints: Preview Blueprint"
 			}
 		]
 	},
