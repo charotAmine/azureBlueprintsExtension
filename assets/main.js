@@ -3,16 +3,12 @@ Vue.component("tree", {
     return {
       treeData: [
         {
-          text: "Something Awsome"
-        },
-        {
-          text: "More awsome stuff"
+          text: "Loqding..."
         }
       ]
     };
   },
   mounted: function() {
-    this.treeData.push({ text: "MOUNTED" });
     window.addEventListener("message", event => {
       this.treeData = event.data.payload;
     });
