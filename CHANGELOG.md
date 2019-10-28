@@ -1,9 +1,16 @@
 # Change Log
 
-All notable changes to the "azure-blueprints-generator" extension will be documented in this file.
+## 0.1.0
 
-Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
+- Add Azure Blueprints viewer
 
-## [Unreleased]
+## 0.0.2
 
-- Initial release
+- Import a blueprint to Azure
+- Publish an imported blueprint
+- Assign a published blueprint
+
+## 0.0.1
+
+- Generate an Azure Blueprints workspace
+- Generate an Azure Blueprints Artifact

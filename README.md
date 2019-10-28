@@ -70,19 +70,3 @@ NOTE : The blueprint workspace MUST be in the root ! The blueprint name in Azure
 
 > This will preview the workspace that will be imported to Azure.
 
-## Release Notes
-
-### 0.1.0
-
-- Add Azure Blueprints viewer
-
-### 0.0.2
-
-- Import a blueprint to Azure
-- Publish an imported blueprint
-- Assign a published blueprint
-
-### 0.0.1
-
-- Generate an Azure Blueprints workspace
-- Generate an Azure Blueprints Artifact
