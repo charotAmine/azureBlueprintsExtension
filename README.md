@@ -70,3 +70,6 @@ NOTE : The blueprint workspace MUST be in the root ! The blueprint name in Azure
 
 > This will preview the workspace that will be imported to Azure.
 
+# Contribution
+
+This extension is open source and hosted on [Github](https://github.com/charotAmine/azureBlueprintsExtension). Contributions are more than welcome. Feel free to fork and add new features or submit bug reports.
