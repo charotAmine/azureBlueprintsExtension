@@ -7,28 +7,27 @@ The Azure Blueprint Code Generator is an extension which creates an Azure Bluepr
 ## Features
 
 First thing that this extension can do is creating a blueprint workspace :
-
-- Use command ** Azure Blueprints: Generate a blueprint workspace **  
+- Use command **Azure Blueprints: Generate a blueprint workspace**  
   ![Generator](images/generator.png)
 
 > This will generate the `Assign.json`, `Blueprint.json` and `/Artifacts` with a default template inside.
 
 The extension can also create an Azure Blueprints artifact of type `template`, `rbac` or `policy`:
 
-- Use command ** Azure Blueprints: Generate a blueprint Artifact **  
+- Use command **Azure Blueprints: Generate a blueprint Artifact**  
   ![artifact](images/artifact.png)
 
 > This will generate the wanted artifact type with a default template inside.
 
 Do you want to test your blueprint without writing scripts? No problem, we have the solution :
 
-# Requirement :
+### Requirement :
 
 - Azure Powershell and Az.Blueprint Module
 
 To import the blueprint :
 
-- Use command ** Azure Blueprints: Import Blueprint **  
+- Use command **Azure Blueprints: Import Blueprint**  
   ![artifact](images/import.png)
 
 ### Requirement :
@@ -39,7 +38,7 @@ To import the blueprint :
 
 To publish the blueprint :
 
-- Use command ** Azure Blueprints: Publish Blueprint **  
+- Use command **Azure Blueprints: Publish Blueprint**  
   ![artifact](images/publish.png)
 
 ### Requirement :
@@ -51,7 +50,7 @@ To publish the blueprint :
 
 To Assign the blueprint :
 
-- Use command ** Azure Blueprints: Assign Blueprint **  
+- Use command **Azure Blueprints: Assign Blueprint**  
   ![artifact](images/assign.png)
 
 ### Requirement :
@@ -65,24 +64,11 @@ To Assign the blueprint :
 
 NOTE : The blueprint workspace MUST be in the root ! The blueprint name in Azure will have the SAME name as the workspace !
 
-- Use command ** Azure Blueprints: Preview Blueprint **  
+- Use command **Azure Blueprints: Preview Blueprint**  
   ![artifact](images/preview.png)
 
 > This will preview the workspace that will be imported to Azure.
 
-## Release Notes
+# Contribution
 
-### 0.1.0
-
-- Add Azure Blueprints viewer
-
-### 0.0.2
-
-- Import a blueprint to Azure
-- Publish an imported blueprint
-- Assign a published blueprint
-
-### 0.0.1
-
-- Generate an Azure Blueprints workspace
-- Generate an Azure Blueprints Artifact
+This extension is open source and hosted on [Github](https://github.com/charotAmine/azureBlueprintsExtension). Contributions are more than welcome. Feel free to fork and add new features or submit bug reports.
