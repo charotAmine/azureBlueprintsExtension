@@ -96,7 +96,7 @@ export async function blueprintPreview(context: vscode.ExtensionContext) {
 
       var found = false;
       if (artifactObj.kind === "template") {
-        if (!artifactObj.properties.resourceGroup === undefined) {
+        if (artifactObj.properties.resourceGroup === undefined) {
           showErrorMessage(
             `${file} template does not contain a Resource Group`
           );
@@ -133,6 +133,7 @@ export async function blueprintPreview(context: vscode.ExtensionContext) {
       }
     }
   });
+  
   setStatusBarMessage("POSTING THE DATA");
   panel.webview.postMessage({
     command: "message",
