@@ -3,7 +3,7 @@ Vue.component("tree", {
     return {
       treeData: [
         {
-          text: "Loqding..."
+          text: "Loading..."
         }
       ]
     };
