@@ -1,5 +1,9 @@
 # Change Log
 
+## Candidate
+
+- Style the viewer
+
 ## 0.1.0
 
 - Add Azure Blueprints viewer
