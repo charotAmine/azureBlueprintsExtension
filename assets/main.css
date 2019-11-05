@@ -1,5 +1,26 @@
+body.vscode-light {
+  --bg: white;
+  --h3: #28293d;
+  --text: #0063f7;
+  --icon: #28293d;
+}
+
+body.vscode-dark {
+  --bg: #1c1c27;
+  --h3: #ff8801;
+  --text: #00cfdd;
+  --icon: #73dfe7;
+}
+
+body.vscode-high-contrast {
+  --bg: white;
+  --h3: black;
+  --text: black;
+  --icon: black;
+}
+
 body {
-  background: #1c1c27;
+  background: var(--bg);
   font: normal normal 13px/1.4 Segoe, "Segoe UI", Calibri, Helmet, FreeSans,
     Sans-Serif;
   padding: 50px;
@@ -8,7 +29,7 @@ body {
 h3 {
   font-size: 26px;
   margin: 0 0 10px 0;
-  color: #ff8801;
+  color: var(--h3);
 }
 
 .tree,
@@ -16,7 +37,7 @@ h3 {
   margin: 0 0 0 1em; /* indentation */
   padding: 0;
   list-style: none;
-  color: #00cfdd;
+  color: var(--text);
   position: relative;
 }
 
@@ -57,14 +78,14 @@ h3 {
 }
 
 .tree li:last-child:before {
-  background: #1c1c27; /* same with body background */
+  background: var(--bg); /* same with body background */
   height: auto;
   top: 1em; /* (line-height/2) */
   bottom: 0;
 }
 
 .kind {
-  color: #73dfe7;
+  color: var(--icon);
   font-weight: normal;
   text-align: center;
   padding-top: 2px;
