@@ -232,7 +232,7 @@ export function activate(context: vscode.ExtensionContext) {
 
   const previewCommand = vscode.commands.registerCommand(
     "extension.blueprintPreview",
-    async () => await blueprintPreview(context)
+    async () => await blueprintPreview(context.extensionPath)
   );
 
   context.subscriptions.push(generateBlueprint);

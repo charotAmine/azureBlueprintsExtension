@@ -13,7 +13,7 @@ Vue.component("tree", {
       this.treeData = event.data.payload;
     });
   },
-  template: `{{threeData}} <ul v-if="treeData.length" class="tree">
+  template: `<ul v-if="treeData.length" class="tree">
             <tree-element v-for="(element, index) in treeData" :key="index + 1" :element="element" />
         </ul>`
 });
