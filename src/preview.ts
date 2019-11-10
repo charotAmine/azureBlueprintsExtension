@@ -1,6 +1,6 @@
 import * as vscode from "vscode";
 import * as fs from "fs";
-import * as path from "path";
+import { TreeBuilder } from "./TreeBuilder";
 
 const {
   showInputBox,
@@ -11,19 +11,14 @@ const {
 
 let artifactDirectory: string | undefined;
 
-interface BlueprintTree {
-  text: string;
-  nodes: Array<BlueprintTree>;
-}
-
 function renderHtml(assetsPath: vscode.Uri): string {
   return `<!DOCTYPE html>
 	<html lang="en">
 	<head>
 		<meta charset="UTF-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Azure BluePrint Preview</title>
-        <link rel="stylesheet" href="${assetsPath}/main.css">
+    <title>Azure BluePrint Preview</title>
+    <link rel="stylesheet" href="${assetsPath}/main.css">
 	</head>
     <body>
     <div>
@@ -37,7 +32,7 @@ function renderHtml(assetsPath: vscode.Uri): string {
 	</html>`;
 }
 
-export async function blueprintPreview(context: vscode.ExtensionContext) {
+export async function blueprintPreview(extensionPath: string) {
   artifactDirectory = await showInputBox({
     value: artifactDirectory,
     prompt: "Workspace Directory",
@@ -54,21 +49,13 @@ export async function blueprintPreview(context: vscode.ExtensionContext) {
     vscode.ViewColumn.Beside,
     {
       enableScripts: true,
-      localResourceRoots: [vscode.Uri.file(`${context.extensionPath}/assets`)]
+      localResourceRoots: [vscode.Uri.file(`${extensionPath}/assets`)]
     }
   );
   const assetsPath = panel.webview.asWebviewUri(
-    vscode.Uri.file(`${context.extensionPath}/assets`)
+    vscode.Uri.file(`${extensionPath}/assets`)
   );
   panel.webview.html = renderHtml(assetsPath);
-
-  var result: BlueprintTree[];
-  result = [
-    {
-      text: "Subscription Assigned",
-      nodes: []
-    }
-  ];
   if (
     artifactDirectory.indexOf("/") < 0 &&
     artifactDirectory.indexOf("\\") < 0
@@ -79,64 +66,27 @@ export async function blueprintPreview(context: vscode.ExtensionContext) {
       artifactDirectory = workspacePath.uri.fsPath + "/" + artifactDirectory;
     }
   }
+
+  let treeBuilder = new TreeBuilder();
   fs.readdirSync(`${artifactDirectory}/artifacts`).forEach(file => {
-    var filepath = `${artifactDirectory}/artifacts/${file}`;
-
-    var artifact = fs.readFileSync(filepath);
-    var artifactObj = JSON.parse(artifact.toString());
-    if (artifactObj.kind === undefined) {
-      showErrorMessage(`${file} template does not contain a kind`);
-    } else {
-      if (artifactObj.properties.displayName) {
-        var nodeName = artifactObj.properties.displayName;
-      } else {
-        var filename = path.parse(filepath).base;
-        nodeName = path.parse(filename).name;
-      }
-
-      var found = false;
-      if (artifactObj.kind === "template") {
-        if (artifactObj.properties.resourceGroup === undefined) {
-          showErrorMessage(
-            `${file} template does not contain a Resource Group`
-          );
-        } else {
-          for (var i = 0; i < result[0].nodes.length; i++) {
-            let element = result[0].nodes[i];
-            if (element.text === artifactObj.properties.resourceGroup) {
-              found = true;
-              if (element.nodes) {
-                element.nodes.push({
-                  text: nodeName,
-                  nodes: []
-                });
-              }
-            }
-          }
-          if (found === false) {
-            result[0].nodes.push({
-              text: artifactObj.properties.resourceGroup,
-              nodes: [
-                {
-                  text: nodeName,
-                  nodes: []
-                }
-              ]
-            });
-          }
-        }
-      } else {
-        result[0].nodes.push({
-          text: nodeName,
-          nodes: []
-        });
-      }
+    try {
+      const filepath = `${artifactDirectory}/artifacts/${file}`;
+      const artifact = fs.readFileSync(filepath);
+      const artifactObj = JSON.parse(artifact.toString());
+      treeBuilder.analyseArtifactObject(file, artifactObj);
+    } catch (error) {
+      showErrorMessage(`${file} : ${error}`);
     }
   });
-  
-  setStatusBarMessage("POSTING THE DATA");
+
+  setStatusBarMessage("Posting analysed data");
+  let allNodes = treeBuilder.allNodes();
   panel.webview.postMessage({
     command: "message",
-    payload: result
+    payload: [{
+      text: "Subscription Assigned",
+      kind: "Subscription",
+      nodes: allNodes
+    }]
   });
 }
