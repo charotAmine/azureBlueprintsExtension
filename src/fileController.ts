@@ -40,7 +40,7 @@ export class FileController {
     }
   }
 
-  private async createDirectory(dirName: string): Promise<string> {
+  public async createDirectory(dirName: string): Promise<string> {
     await mkdir(dirName);
     return dirName;
   }
@@ -63,7 +63,7 @@ export class FileController {
     return newFileName;
   }
 
-  private async fileExists(path: string): Promise<boolean> {
+  public async fileExists(path: string): Promise<boolean> {
     return new Promise((resolve, reject) => {
       fs.exists(path, exists => {
         resolve(exists);
