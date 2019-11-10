@@ -39,3 +39,4 @@ steps:
     tag: $(Build.BuildNumber)
     releaseNotesFile: 'minichangelog.txt'
     assets: '$(Build.ArtifactStagingDirectory)/*.vsix'
+    addChangeLog: false
