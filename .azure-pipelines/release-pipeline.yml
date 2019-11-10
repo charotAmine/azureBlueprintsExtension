@@ -14,7 +14,6 @@ steps:
 - bash: |
     PACKAGE_VERSION=$(node -p "require('./package.json').version")
     echo "##vso[build.updatebuildnumber]${PACKAGE_VERSION}"
-    echo "$PACKAGE_VERSION" > version.txt
   displayName: Set version number of build
 
 # do all the normal build stuff
