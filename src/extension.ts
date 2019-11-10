@@ -216,7 +216,7 @@ export function activate(context: vscode.ExtensionContext) {
               terminal.show(true);
               terminal.sendText("POWERSHELL Login-AzAccount", true);
               terminal.sendText(
-                `POWERSHELL $createdBlueprint = Get-AzBlueprint -ManagementGroupId ${managementGroupName} -Name ${blueprintRootName}; New-AzBlueprintAssignment -Name ${blueprintRootName} -Blueprint $createdBlueprint -AssignmentFile ./${blueprintRootName}/Assign.json -SubscriptionId ${subscriptionId}`,
+                `POWERSHELL '$createdBlueprint = Get-AzBlueprint -ManagementGroupId ${managementGroupName} -Name ${blueprintRootName}; New-AzBlueprintAssignment -Name ${blueprintRootName} -Blueprint $createdBlueprint -AssignmentFile ./${blueprintRootName}/Assign.json -SubscriptionId ${subscriptionId}`,
                 true
               );
             }
@@ -235,6 +235,76 @@ export function activate(context: vscode.ExtensionContext) {
     async () => await blueprintPreview(context.extensionPath)
   );
 
+  const exportBlueprint = vscode.commands.registerCommand(
+    "extension.exportBlueprint",
+    async () => {
+      try {
+        blueprintRootName = await vscode.window.showInputBox({
+          value: blueprintRootName,
+          prompt: "Azure Blueprint name",
+          placeHolder: "Azure blueprint name",
+          password: false
+        });
+        if (blueprintRootName === undefined || blueprintRootName.length <= 0) {
+          vscode.window.setStatusBarMessage("No Azure Blueprint name provided");
+          return;
+        }
+        let managementGroupName = await vscode.window.showInputBox({
+          value: "myManagementGroup",
+          prompt: "Management Group name",
+          placeHolder: "Management Group name",
+          password: false
+        });
+        if (
+          managementGroupName == undefined ||
+          managementGroupName.length <= 0
+        ) {
+          vscode.window.setStatusBarMessage("No management group provided");
+          return;
+        }
+        let outputPath = await vscode.window.showInputBox({
+          value: `${context.extensionPath}/`,
+          prompt: "Output export path",
+          placeHolder: "Set the output path",
+          password: false
+        });
+        if (outputPath === undefined || outputPath.length <= 0) {
+          vscode.window.setStatusBarMessage("No path provided");
+          return;
+        }
+        let version = await vscode.window.showInputBox({
+          prompt: "Assigned blueprint version",
+          placeHolder: "Set the wanted version to export",
+          password: false
+        });
+        if (
+          version === undefined ||
+          version.length <= 0
+        ) {
+          vscode.window.setStatusBarMessage("No version provided");
+          return;
+        }
+        let terminal = (<any>vscode.window).createTerminal(
+          "Import blueprint"
+        );
+        blueprintWorkspace.createDirectory(outputPath);
+        terminal.show(true);
+        terminal.sendText("POWERSHELL Login-AzAccount", true);
+        terminal.sendText(
+          `POWERSHELL $createdBlueprint = Get-AzBlueprint -ManagementGroupId ${managementGroupName} -Name ${blueprintRootName}; Export-AzBlueprintWithArtifact -Blueprint $createdBlueprint -Version ${version} -OutputPath '${outputPath}'`,
+          true
+        );
+
+
+
+      } catch (err) {
+        if (err && err.message) {
+          vscode.window.showErrorMessage(err.message);
+        }
+      }
+    }
+  );
+
   context.subscriptions.push(generateBlueprint);
   context.subscriptions.push(createTemplateArtifact);
   context.subscriptions.push(importBlueprint);
@@ -243,4 +313,4 @@ export function activate(context: vscode.ExtensionContext) {
   context.subscriptions.push(previewCommand);
 }
 
-export function deactivate() {}
+export function deactivate() { }
