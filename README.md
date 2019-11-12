@@ -2,6 +2,8 @@
 
 [![Marketplace Version](https://vsmarketplacebadge.apphb.com/version/aminecharot.azure-blueprints-generator.svg)](https://marketplace.visualstudio.com/items?itemName=aminecharot.azure-blueprints-generator) [![Installs](https://vsmarketplacebadge.apphb.com/installs/aminecharot.azure-blueprints-generator.svg)](https://marketplace.visualstudio.com/items?itemName=aminecharot.azure-blueprints-generator) [![Downloads](https://vsmarketplacebadge.apphb.com/downloads/aminecharot.azure-blueprints-generator.svg)](https://marketplace.visualstudio.com/items?itemName=aminecharot.azure-blueprints-generator) [![Rating](https://vsmarketplacebadge.apphb.com/rating/aminecharot.azure-blueprints-generator.svg)](https://marketplace.visualstudio.com/items?itemName=aminecharot.azure-blueprints-generator)
 
+[![Build Status](https://dev.azure.com/AzureBlueprintsExtension/Azure%20Blueprints%20Extension/_apis/build/status/CI?branchName=master)](https://dev.azure.com/AzureBlueprintsExtension/Azure%20Blueprints%20Extension/_build/latest?definitionId=1&branchName=master)
+
 The Azure Blueprint Code Generator is an extension which creates an Azure Blueprint workspace with the necessary JSON files to deploy a Blueprint using code. It also creates artifacts of type Template, Rbac assignment and Policy Assignment.
 
 ## Features
