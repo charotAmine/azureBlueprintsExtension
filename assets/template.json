@@ -8,8 +8,8 @@
       "resourceGroup": "defaultRG",
       "displayName": "Default ARM Template",
       "parameters": {
-        "defaultParamater": {
-          "value": "[parameters('defaultParamater')]"
+        "defaultParameter": {
+          "value": "[parameters('defaultParameter')]"
         }
       }
     },
